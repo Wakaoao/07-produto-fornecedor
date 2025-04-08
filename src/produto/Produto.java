@@ -1,13 +1,17 @@
+package produto;
+
+import fornecedor.Fornecedor;
+
 public class Produto {
 
     private String nome;
-    private double valoUnitario;
-    private int qtdEstoque;
+    private double valorUnitario;
+    private int qtdEstoque;s
     private Fornecedor fornecedor;
 
     public Produto(String nomeProd, double valor, int qtd, Fornecedor fornecedor) {
         this.nome = nomeProd;
-        this.valoUnitario = valor;
+        this.valorUnitario = valor;
         this.qtdEstoque = qtd;
         this.fornecedor = fornecedor;
     }
@@ -20,12 +24,12 @@ public class Produto {
         this.nome = nome;
     }
 
-    public double getValoUnitario() {
-        return valoUnitario;
+    public double getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setValoUnitario(double valoUnitario) {
-        this.valoUnitario = valoUnitario;
+    public void setValorUnitario(double valoUnitario) {
+        this.valorUnitario = valoUnitario;
     }
 
     public int getQtdEstoque() {

@@ -1,3 +1,5 @@
+package fornecedor;
+
 public class Fornecedor {
 
     private String nome;

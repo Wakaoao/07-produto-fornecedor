@@ -1,11 +1,18 @@
+package util;
+
+import fornecedor.Fornecedor;
+import produto.Produto;
+
+import java.text.DecimalFormat;
+
 import static java.lang.Integer.parseInt;
 import static java.lang.Double.parseDouble;
 import static javax.swing.JOptionPane.*;
 
 public class Util {
 
-    private Produto[] produto = new Produto[5];
-    private Fornecedor[] fornecedor = new Fornecedor[5];
+    private Produto[] produto = new Produto[200];
+    private Fornecedor[] fornecedor = new Fornecedor[200];
     private int idxProduto = 0;
     private int idxFornecedor = 0;
 
@@ -27,11 +34,24 @@ public class Util {
                     pesquisarProduto();
                     break;
                 case 3:
-                    pesquisarFornecedor();
+                    pesquisar();
                     break;
                 default:
                     showMessageDialog(null, "Opção inválida");
             }
+        }
+
+    }
+
+    private void pesquisar() {
+
+        Fornecedor fornecedor = pesquisarFornecedor();
+
+        if(fornecedor != null) {
+            String aux = "";
+            aux += "Fornecedor: " + fornecedor.getNome() + "\n";
+            aux += "CNPJ: " + fornecedor.getCnpj() + "\n";
+            showMessageDialog(null, aux);
         }
 
     }
@@ -44,7 +64,7 @@ public class Util {
          Fornecedor fornecedor = pesquisarFornecedor();
 
          if(fornecedor == null) {
-             cadastrarFornecedor();
+             fornecedor = cadastrarFornecedor();
          }
 
          nome = showInputDialog("Nome do produto");
@@ -69,19 +89,21 @@ public class Util {
 
     private void pesquisarProduto() {
 
+        DecimalFormat df = new DecimalFormat("0.00");
+
         String nome = showInputDialog("Nome do produto");
-        String aux = "";
+        String aux = "Produto não encontrado";
 
         for(int i=0; i<idxProduto; i++) {
             if(produto[i].getNome().equals(nome)) {
-                aux += "Fornecedor: " + produto[i].getFornecedor() + "\n";
-                aux += "Perfil (tipo de tarifa): " + produto[i].getValoUnitario() + "\n";
-                aux += "Quantidade em Estoque: " + produto[i].getQtdEstoque() + "\n";
+                aux = "";
+                aux += "Nome: " + produto[i].getNome() + "\n";
+                aux += "Valor unitário: R$" + df.format(produto[i].getValorUnitario()) + "\n";
+                aux += "Fornecedor: " + produto[i].getFornecedor().getNome() + "\n";
             }
-
-            showMessageDialog(null, "Produto não encontrado");
-
         }
+
+        showMessageDialog(null, aux);
 
     }
 
