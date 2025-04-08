@@ -6,7 +6,7 @@ public class Produto {
 
     private String nome;
     private double valorUnitario;
-    private int qtdEstoque;s
+    private int qtdEstoque;
     private Fornecedor fornecedor;
 
     public Produto(String nomeProd, double valor, int qtd, Fornecedor fornecedor) {
